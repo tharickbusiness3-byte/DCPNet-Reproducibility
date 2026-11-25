@@ -1,0 +1,41 @@
+seed: 17
+
+data:
+  spacing: [1.0, 1.0, 1.0]
+  patch_size: [96, 96, 96]
+  train_num_samples: 2
+  pos: 2
+  neg: 1
+  batch_size: 1
+  num_workers: 2
+
+model:
+  channels: [24, 48, 96, 192]
+  refinement_fp32: true
+  decoder2_fp32: true
+
+loss:
+  alpha_raw: 0.30
+  beta_predicate: 0.20
+  gamma_feedback: 0.05
+  eta_brier: 0.02
+  feedback_margin: 0.001
+  dual_lr: 0.05
+  dual_cap: 5.0
+  tolerances: [0.0001, 0.0001, 0.00001]
+
+train:
+  max_epochs: 80
+  early_stopping_patience: 15
+  lr: 0.0002
+  weight_decay: 0.00001
+  gradient_clip: 12.0
+  amp: true
+  grad_accum_steps: 1
+  min_scaler_scale: 1.0
+
+infer:
+  roi_size: [96, 96, 96]
+  overlap: 0.5
+  sw_batch_size: 1
+  threshold: 0.5
